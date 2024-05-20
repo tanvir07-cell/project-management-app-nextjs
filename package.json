@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "type": "module",
   "prisma": {
     "seed": "ts-node -P tsconfig-seed.json -r tsconfig-paths/register --transpileOnly prisma/seed.ts"
   },
@@ -19,12 +20,17 @@
     "cookie": "^0.6.0",
     "css-reset-and-normalize": "^2.3.6",
     "jose": "^5.3.0",
+    "jsonwebtoken": "^9.0.2",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-feather": "^2.0.10"
+    "react-feather": "^2.0.10",
+    "server-only": "^0.0.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

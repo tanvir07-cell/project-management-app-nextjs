@@ -1,5 +1,8 @@
+"use client";
+
 import { cva, VariantProps } from "class-variance-authority";
 import React, { PropsWithChildren } from "react";
+import { useFormStatus } from "react-dom";
 
 const buttonClasses = cva(
   [
@@ -20,7 +23,6 @@ const buttonClasses = cva(
           "border-transparent",
           "hover:bg-violet-600",
         ],
-
         secondary: [
           "bg-white",
           "text-black",
@@ -60,9 +62,11 @@ const Button = ({
   intent?: "primary" | "secondary" | "text";
   size?: "small" | "medium" | "large";
 }>) => {
+  const { pending } = useFormStatus();
+
   return (
     <button className={buttonClasses({ intent, size, className })} {...props}>
-      {children}
+      {pending ? children + "ing..." : children}
     </button>
   );
 };
