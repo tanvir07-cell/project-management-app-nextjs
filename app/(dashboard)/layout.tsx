@@ -19,9 +19,9 @@ export default function ProjectRootLayout({
   return (
     <html lang="en">
       <body
-        className={clsx(" h-screen w-screen rainbow-mesh p-6", inter.className)}
+        className={clsx(" h-screen w-screen candy-mesh p-6", inter.className)}
       >
-        <div className="flex items-center justify-between h-full w-full gap-4">
+        <div className="sm:flex items-center justify-between h-full w-full gap-4 grid grid-cols-1">
           <Sidebar />
           <GlassPane className=" w-full h-full flex items-center justify-center align-center container mx-auto">
             {children}

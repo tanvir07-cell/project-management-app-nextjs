@@ -30,7 +30,7 @@ const SidebarLink = ({
         size={40}
         className={clsx(
           " stroke-white/80 hover:stroke-violet-600 transition duration-200 ease-in-out",
-          isActive && "stroke-violet-600"
+          isActive && "candy-mesh"
         )}
       />
     </Link>

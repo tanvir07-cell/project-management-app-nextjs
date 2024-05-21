@@ -1,4 +1,4 @@
-"use server";
+import "server-only";
 
 import jwt from "jsonwebtoken";
 import prisma from "./db";
@@ -85,5 +85,3 @@ export const hashPW = (password: string) => {
 async function comparePassword(password: string, hash: string) {
   return bcrypt.compare(password, hash);
 }
-
-console.log(createTokenForUser("123"));

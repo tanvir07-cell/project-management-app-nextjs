@@ -1,10 +1,10 @@
 "use server";
-
-import { signIn, signUp } from "@/utils/authTools";
 import { cookies } from "next/headers";
+import { signUp, signIn } from "@/utils/authTools";
 import { z } from "zod";
-import { COOKIE_NAME } from "@/utils/constants";
 import { redirect } from "next/navigation";
+import { COOKIE_NAME } from "@/utils/constants";
+import { revalidatePath } from "next/cache";
 
 const registerSchema = z.object({
   email: z.string().email(),
@@ -27,13 +27,14 @@ export const registerUser = async (prevState: any, formData: FormData) => {
   });
 
   try {
-    const { user, token } = await signUp(data);
+    const { token } = await signUp(data);
     cookies().set(COOKIE_NAME, token);
-  } catch (err: any) {
-    console.error(err);
-    return { message: err.message, code: err.code };
+  } catch (e) {
+    console.error(e);
+    return { message: "Failed to sign you up" };
   }
-  redirect("/sign-in");
+
+  redirect("home");
 };
 
 export const signInUser = async (prevState: any, formData: FormData) => {
@@ -41,13 +42,13 @@ export const signInUser = async (prevState: any, formData: FormData) => {
     email: formData.get("email"),
     password: formData.get("password"),
   });
-  try {
-    const { user, token } = await signIn(data);
-    cookies().set(COOKIE_NAME, token);
-  } catch (err: any) {
-    console.error(err);
-    return { message: err.message, code: err.code };
-  }
 
-  redirect("/register");
+  try {
+    const { token } = await signIn(data);
+    cookies().set(COOKIE_NAME, token);
+  } catch (e) {
+    console.error(e);
+    return { message: "Failed to sign you in" };
+  }
+  redirect("home");
 };

@@ -10,7 +10,7 @@ const Card = ({
   return (
     <div
       className={clsx(
-        "rounded-3xl px-10 py-4 drop-shadow-xl ash-mesh border-solid border-2 border-gray-200",
+        "rounded-3xl sm:px-10 sm:py-4 sm:drop-shadow-xl ash-mesh border-solid border-2 border-gray-200",
         className
       )}
     >
