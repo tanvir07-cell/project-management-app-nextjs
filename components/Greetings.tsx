@@ -4,6 +4,10 @@ import Card from "./Card";
 import { delay } from "@/utils/delay";
 import { COOKIE_NAME } from "@/utils/constants";
 import { getUserFromToken } from "@/utils/authTools";
+import Image from "next/image";
+
+import USER from "@/images/user1.png";
+import GlassPane from "./GlassPane";
 
 const getUserData = async () => {
   await delay(2000);
@@ -23,17 +27,52 @@ const Greetings = async () => {
   return (
     <Card className="w-full sm:py-4 relative px-5 py-10">
       <div className="mb-4">
-        <h1 className="text-3xl text-white/95 font-bold mb-4 text-center">
-          Hello, {user.firstName}!
+        <GlassPane
+          className="rounded-full
+            border-4
+            border-white
+            shadow-lg
+            bg-white
+             candy-mesh
+             p-4
+              w-40
+              h-40
+              flex
+              items-center
+              justify-center
+              align-center
+              container
+              mx-auto
+              relative
+              z-10
+              
+              
+                
+            "
+        >
+          <Image
+            src={USER}
+            alt="user"
+            height={200}
+            width={200}
+            className="
+            
+            
+          
+          "
+          />
+        </GlassPane>
+
+        <h1 className="text-3xl text-gray-700/90 font-bold mb-4 text-center mt-7">
+          Hello, {user?.firstName}!
         </h1>
-        <h4 className="text-xl text-white text-center">
+
+        <h4 className="text-xl text-white/95 mt-7 mb-7 text-center">
           Check your daily tasks and schedule
         </h4>
       </div>
-      <div>
-        <Button size="large" className="w-full">
-          Today's Schedule
-        </Button>
+      <div className="flex items-center justify-center">
+        <Button size="large">Today's Schedule</Button>
       </div>
     </Card>
   );
