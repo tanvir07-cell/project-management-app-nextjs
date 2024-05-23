@@ -8,9 +8,11 @@ import Image from "next/image";
 
 import USER from "@/images/user1.png";
 import GlassPane from "./GlassPane";
+import { signOutUser } from "@/actions/auth";
+import SignOut from "./SignOut";
 
 const getUserData = async () => {
-  await delay(2000);
+  await delay(1000);
   const getTokenFromCookie = cookies().get(COOKIE_NAME) as {
     name: string;
     value: string;
@@ -63,9 +65,12 @@ const Greetings = async () => {
           />
         </GlassPane>
 
-        <h1 className="text-3xl text-gray-700/90 font-bold mb-4 text-center mt-7">
-          Hello, {user?.firstName}!
-        </h1>
+        <div className="flex items-center justify-center gap-10">
+          <h1 className="text-3xl text-gray-700/90 font-bold mb-4  mt-7">
+            Hello, {user?.firstName}!
+          </h1>
+          <SignOut />
+        </div>
 
         <h4 className="text-xl text-white/95 mt-7 mb-7 text-center">
           Check your daily tasks and schedule

@@ -32,6 +32,12 @@ const buttonClasses = cva(
           "border-2",
           "border-gray-800",
         ],
+        danger: [
+          "bg-red-500",
+          "text-white",
+          "border-transparent",
+          "hover:bg-red-600",
+        ],
         text: ["bg-transparent", "text-black", "hover:bg-gray-100"],
       },
       size: {

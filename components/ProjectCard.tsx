@@ -15,9 +15,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const completedCount = project.tasks.filter(
     (t) => t.status === "COMPLETED"
   ).length;
-  const progress = Math.ceil((completedCount / project.tasks.length) * 100);
+  const progress =
+    Math.ceil((completedCount / project.tasks.length) * 100) || 0;
   return (
-    <div key={project.id} className="w-1/3 p-3">
+    <div key={project.id} className="w-1/3 p-3 mb-5">
       <GlassPane className="ash-mesh  hover:scale-105 transition-all ease-in-out duration-200">
         <Link href={`/project/${project.id}`}>
           <div className=" p-4 rounded-lg ">

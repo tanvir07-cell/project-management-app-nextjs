@@ -1,7 +1,9 @@
 import GlassPane from "@/components/GlassPane";
 import Greetings from "@/components/Greetings";
+import NewProject from "@/components/NewProject";
 import ProjectCard from "@/components/ProjectCard";
 import Projects from "@/components/Projects";
+import TaskCard from "@/components/TaskCard";
 import GreetingsSkeleton from "@/components/loading";
 import { getUserFromToken } from "@/utils/authTools";
 import { COOKIE_NAME } from "@/utils/constants";
@@ -26,10 +28,16 @@ export default async function Page() {
           </Suspense>
 
           {/** projects map here */}
-          <div className="w-1/3 p-3">{/* new project here */}</div>
+          <div className="w-1/3 p-3">
+            <NewProject />
+          </div>
         </div>
         <div className="mt-6 flex-2 grow w-full flex">
-          <div className="w-full">{/* tasks here */}</div>
+          <div className="w-full">
+            <Suspense fallback={<GreetingsSkeleton />}>
+              <TaskCard title={"The title"} />
+            </Suspense>
+          </div>
         </div>
       </div>
     </div>

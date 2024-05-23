@@ -4,7 +4,6 @@ import { signUp, signIn } from "@/utils/authTools";
 import { z } from "zod";
 import { redirect } from "next/navigation";
 import { COOKIE_NAME } from "@/utils/constants";
-import { revalidatePath } from "next/cache";
 
 const registerSchema = z.object({
   email: z.string().email(),
@@ -51,4 +50,9 @@ export const signInUser = async (prevState: any, formData: FormData) => {
     return { message: "Failed to sign you in" };
   }
   redirect("home");
+};
+
+export const signOutUser = async () => {
+  cookies().delete(COOKIE_NAME);
+  redirect("/login");
 };
