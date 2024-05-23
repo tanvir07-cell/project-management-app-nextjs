@@ -4,6 +4,7 @@ import GlassPane from "@/components/GlassPane";
 import "../globals.css";
 import clsx from "clsx";
 import Sidebar from "@/components/Sidebar";
+import ML from "@/components/ML";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,9 +20,13 @@ export default function ProjectRootLayout({
   return (
     <html lang="en">
       <body
-        className={clsx(" h-screen w-screen candy-mesh p-6", inter.className)}
+        className={clsx(
+          "scroller h-screen w-screen candy-mesh p-6",
+          inter.className
+        )}
       >
         <div id="modal"></div>
+        <ML />
 
         <div className="sm:flex items-center justify-between h-full w-full gap-4 grid grid-cols-1">
           <Sidebar />

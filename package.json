@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@prisma/client": "^5.14.0",
+    "@teachablemachine/image": "^0.8.5",
+    "@tensorflow/tfjs": "^4.19.0",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
