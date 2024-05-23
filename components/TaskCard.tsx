@@ -8,7 +8,6 @@ import { delay } from "@/utils/delay";
 import GlassPane from "./GlassPane";
 
 const getAllDueTaskFromUser = async () => {
-  await delay(2000);
   const getTokenFromCookies = cookies().get(COOKIE_NAME) as {
     name: string;
     value: string;

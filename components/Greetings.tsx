@@ -12,7 +12,6 @@ import { signOutUser } from "@/actions/auth";
 import SignOut from "./SignOut";
 
 const getUserData = async () => {
-  await delay(1000);
   const getTokenFromCookie = cookies().get(COOKIE_NAME) as {
     name: string;
     value: string;
