@@ -54,5 +54,5 @@ export const signInUser = async (prevState: any, formData: FormData) => {
 
 export const signOutUser = async () => {
   cookies().delete(COOKIE_NAME);
-  redirect("/login");
+  redirect("/sign-in");
 };
