@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import ProjectCard from "./ProjectCard";
 
 async function getAllProjectsForUser() {
+  await delay(1000);
   const userTokenfromCookie = cookies().get(COOKIE_NAME) as {
     name: string;
     value: string;
@@ -27,7 +28,6 @@ async function getAllProjectsForUser() {
 
 const Projects = async () => {
   const projects = await getAllProjectsForUser();
-  console.log("PROJECTS", projects);
 
   return projects.map((project) => {
     return <ProjectCard key={project.id} project={project} />;

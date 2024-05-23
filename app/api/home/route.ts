@@ -1,6 +1,7 @@
 import { getUserFromToken } from "@/utils/authTools";
 import { COOKIE_NAME } from "@/utils/constants";
 import prisma from "@/utils/db";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -20,6 +21,9 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
       ownerId: user?.id,
     },
   });
+
+  revalidatePath("/home");
+  revalidateTag("/home");
 
   return NextResponse.json({
     message: "Project created successfully",
