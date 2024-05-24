@@ -35,7 +35,7 @@ export default async function Page() {
         <div className="mt-6 flex-2 grow w-full flex">
           <div className="w-full">
             <Suspense fallback={<GreetingsSkeleton />}>
-              <TaskCard title={"The title"} />
+              <TaskCard />
             </Suspense>
           </div>
         </div>

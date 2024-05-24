@@ -12,3 +12,14 @@ export const createPost = async (name: string) => {
 
   return { message, project };
 };
+
+export const createTask = async (name: string, projectId: string) => {
+  const res = await fetch(new URL("/api/task", createURL("/api/task")), {
+    method: "POST",
+    body: JSON.stringify({ name, projectId }),
+  });
+
+  const { message, task } = await res.json();
+
+  return { message, task };
+};

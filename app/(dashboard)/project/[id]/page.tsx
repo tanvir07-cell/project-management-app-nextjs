@@ -6,7 +6,6 @@ import { delay } from "@/utils/delay";
 import { cookies } from "next/headers";
 
 const getTaskByProjectId = async (id) => {
-  await delay(1000);
   const getTokenFromCookies = cookies().get(COOKIE_NAME) as {
     name: string;
     value: string;
@@ -28,7 +27,7 @@ const ProjectPage = async ({ params }: { params: { id: string } }) => {
   const data = await getTaskByProjectId(params.id);
   return (
     <div>
-      <TaskCard title={data?.name} tasks={data?.tasks} />
+      <TaskCard title={data?.name} tasks={data?.tasks} id={params.id} />
     </div>
   );
 };

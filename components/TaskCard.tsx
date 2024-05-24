@@ -6,6 +6,7 @@ import Card from "./Card";
 import Button from "./Button";
 import { delay } from "@/utils/delay";
 import GlassPane from "./GlassPane";
+import CreateTaskButton from "./CreateTaskButton";
 
 const getAllDueTaskFromUser = async () => {
   const getTokenFromCookies = cookies().get(COOKIE_NAME) as {
@@ -18,10 +19,10 @@ const getAllDueTaskFromUser = async () => {
       ownerId: user?.id,
       NOT: {
         status: "COMPLETED",
-        deleted: true,
+        deleted: false,
       },
     },
-    take: 5,
+    take: 20,
     orderBy: {
       due: "asc",
     },
@@ -29,9 +30,8 @@ const getAllDueTaskFromUser = async () => {
   return tasks;
 };
 
-const TaskCard = async ({ title, tasks }) => {
+const TaskCard = async ({ title, tasks, id }) => {
   const data = tasks || (await getAllDueTaskFromUser());
-  console.log(data);
 
   return (
     <Card className="mb-10 ash-mesh">
@@ -39,11 +39,8 @@ const TaskCard = async ({ title, tasks }) => {
         <div>
           <span className="text-3xl text-gray-600">{title}</span>
         </div>
-        <div>
-          <Button intent="text" className="text-violet-600">
-            + Create New
-          </Button>
-        </div>
+
+        <CreateTaskButton id={id} />
       </div>
       <div>
         {data && data.length ? (
