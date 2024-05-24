@@ -40,7 +40,8 @@ const TaskCard = async ({ title, tasks, id }) => {
           <span className="text-3xl text-gray-600">{title}</span>
         </div>
 
-        <CreateTaskButton id={id} />
+        {/* only show this button to the specific project page */}
+        {id && <CreateTaskButton id={id} />}
       </div>
       <div>
         {data && data.length ? (
