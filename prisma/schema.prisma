@@ -42,6 +42,7 @@ model Project {
   tasks   Task[]
 
   @@unique([ownerId, name])
+  @@unique([ownerId, id])
   @@index([ownerId, id])
 }
 
@@ -71,6 +72,9 @@ model Task {
   description String?
 
   @@index([ownerId])
+
+  @@unique([ownerId, id])
+  @@unique([projectId,ownerId])
 }
 
 
