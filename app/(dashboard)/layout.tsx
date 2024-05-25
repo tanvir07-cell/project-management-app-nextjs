@@ -21,7 +21,7 @@ export default function ProjectRootLayout({
     <html lang="en">
       <body
         className={clsx(
-          "scroller h-screen w-screen candy-mesh p-6",
+          "scroller h-screen w-screen candy-mesh p-6 dark:text-white/80",
           inter.className
         )}
       >

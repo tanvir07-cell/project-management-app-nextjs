@@ -22,8 +22,17 @@ const ProjectCard = ({ project }: { project: Project }) => {
       <GlassPane className="ash-mesh  hover:scale-105 transition-all ease-in-out duration-200">
         <Link href={`/project/${project.id}`}>
           <div className=" p-4 rounded-lg ">
-            <h1 className="text-xl font-bold">{project.name}</h1>
-            <p className="text-sm text-gray-700 mt-2 mb-5">
+            <h1
+              className="text-xl font-bold
+            "
+            >
+              {project.name}
+            </h1>
+            <p
+              className="text-sm text-gray-700 mt-2 mb-5
+             dark:text-white/60
+            "
+            >
               Created:{" "}
               {new Date(project.createdAt).toLocaleDateString("en-US", {
                 weekday: "long",

@@ -7,6 +7,8 @@ import Button from "./Button";
 import { delay } from "@/utils/delay";
 import GlassPane from "./GlassPane";
 import CreateTaskButton from "./CreateTaskButton";
+import Input from "./Input";
+import CompletedRadio from "./CompletedRadio";
 
 const getAllDueTaskFromUser = async () => {
   const getTokenFromCookies = cookies().get(COOKIE_NAME) as {
@@ -34,10 +36,12 @@ const TaskCard = async ({ title, tasks, id }) => {
   const data = tasks || (await getAllDueTaskFromUser());
 
   return (
-    <Card className="mb-10 ash-mesh">
+    <Card className="mb-10 ash-mesh ">
       <div className="flex justify-between items-center gap-10">
         <div>
-          <span className="text-3xl text-gray-600">{title}</span>
+          <span className="text-3xl text-gray-600 dark:text-white/90">
+            {title}
+          </span>
         </div>
 
         {/* only show this button to the specific project page */}
@@ -48,11 +52,14 @@ const TaskCard = async ({ title, tasks, id }) => {
           <div>
             {data.map((task) => (
               <div className="py-2 " key={task.id}>
-                <div>
-                  <span className="text-gray-700/90 text-xl">{task.name}</span>
+                <div className="flex items-center justify-center">
+                  <span className="text-gray-700/90 text-xl dark:text-white/80">
+                    {task.name}
+                  </span>
+                  {id && <CompletedRadio id={task.id} />}
                 </div>
                 <div>
-                  <span className="text-gray-700/70 text-sm">
+                  <span className="text-gray-700/70 text-sm dark:text-white/60">
                     {task.description}
                   </span>
                 </div>

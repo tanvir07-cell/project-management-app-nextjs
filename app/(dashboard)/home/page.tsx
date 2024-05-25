@@ -13,7 +13,7 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { Suspense } from "react";
 
-export default async function Page() {
+export default function Page() {
   return (
     <div className="h-full overflow-y-auto pr-6 w-1/1 mt-4">
       <div className=" h-full  items-stretch justify-center min-h-[content]">
@@ -28,7 +28,7 @@ export default async function Page() {
           </Suspense>
 
           {/** projects map here */}
-          <div className="w-1/3 p-3">
+          <div className="w-[50%] mx-auto p-2">
             <NewProject />
           </div>
         </div>

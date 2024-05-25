@@ -24,7 +24,7 @@ model User {
   updatedAt DateTime @updatedAt
 
   projects Project[]
-  tasks     Task[]
+  tasks    Task[]
 }
 
 model Project {
@@ -67,8 +67,10 @@ model Task {
   due     DateTime?
   deleted Boolean   @default(false)
 
-  name String
+  name        String
   description String?
 
   @@index([ownerId])
 }
+
+

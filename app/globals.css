@@ -17,38 +17,14 @@
   background-image: radial-gradient(
       at 40% 20%,
       hsla(210, 100%, 40%, 1) 0px,
-      /* Blue */ transparent 50%
+      transparent 50%
     ),
-    radial-gradient(
-      at 80% 0%,
-      hsla(260, 100%, 50%, 1) 0px,
-      /* Purple */ transparent 50%
-    ),
-    radial-gradient(
-      at 0% 50%,
-      hsla(200, 100%, 30%, 1) 0px,
-      /* Dark Blue */ transparent 50%
-    ),
-    radial-gradient(
-      at 80% 50%,
-      hsla(290, 100%, 40%, 1) 0px,
-      /* Violet */ transparent 50%
-    ),
-    radial-gradient(
-      at 0% 100%,
-      hsla(240, 100%, 35%, 1) 0px,
-      /* Dark Purple */ transparent 50%
-    ),
-    radial-gradient(
-      at 80% 100%,
-      hsla(260, 100%, 25%, 1) 0px,
-      /* Darker Purple */ transparent 50%
-    ),
-    radial-gradient(
-      at 0% 0%,
-      hsla(210, 100%, 20%, 1) 0px,
-      /* Darker Blue */ transparent 50%
-    );
+    radial-gradient(at 80% 0%, hsla(260, 100%, 50%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(200, 100%, 30%, 1) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, hsla(290, 100%, 40%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(240, 100%, 35%, 1) 0px, transparent 50%),
+    radial-gradient(at 80% 100%, hsla(260, 100%, 25%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(210, 100%, 20%, 1) 0px, transparent 50%);
 }
 
 .candy-mesh {
@@ -61,28 +37,12 @@
   background-image: radial-gradient(
       at 99% 6%,
       hsla(210, 100%, 40%, 1) 0px,
-      /* Blue */ transparent 50%
+      transparent 50%
     ),
-    radial-gradient(
-      at 55% 88%,
-      hsla(260, 100%, 50%, 1) 0px,
-      /* Purple */ transparent 50%
-    ),
-    radial-gradient(
-      at 53% 27%,
-      hsla(200, 100%, 30%, 1) 0px,
-      /* Dark Blue */ transparent 50%
-    ),
-    radial-gradient(
-      at 89% 89%,
-      hsla(290, 100%, 40%, 1) 0px,
-      /* Violet */ transparent 50%
-    ),
-    radial-gradient(
-      at 35% 44%,
-      hsla(240, 100%, 35%, 1) 0px,
-      /* Dark Purple */ transparent 50%
-    );
+    radial-gradient(at 55% 88%, hsla(260, 100%, 50%, 1) 0px, transparent 50%),
+    radial-gradient(at 53% 27%, hsla(200, 100%, 30%, 1) 0px, transparent 50%),
+    radial-gradient(at 89% 89%, hsla(290, 100%, 40%, 1) 0px, transparent 50%),
+    radial-gradient(at 35% 44%, hsla(240, 100%, 35%, 1) 0px, transparent 50%);
 }
 
 .ash-mesh {
@@ -124,4 +84,60 @@
     max-width: var(--scrollbar-width-legacy);
     max-height: var(--scrollbar-width-legacy);
   }
+}
+
+label {
+  @apply h-6 relative inline-block;
+}
+
+[type="checkbox"] {
+  @apply w-11 h-0 cursor-pointer inline-block;
+  @apply focus:outline-0 dark:focus:outline-0;
+  @apply border-0 dark:border-0;
+  @apply focus:ring-offset-transparent dark:focus:ring-offset-transparent;
+  @apply focus:ring-transparent dark:focus:ring-transparent;
+  @apply focus-within:ring-0 dark:focus-within:ring-0;
+  @apply focus:shadow-none dark:focus:shadow-none;
+
+  @apply after:absolute before:absolute;
+  @apply after:top-0 before:top-0;
+  @apply after:block before:inline-block;
+  @apply before:rounded-full after:rounded-full;
+
+  @apply after:content-[''] after:w-5 after:h-5 after:mt-0.5 after:ml-0.5;
+  @apply after:shadow-md after:duration-100;
+
+  @apply before:content-[''] before:w-10 before:h-full;
+  @apply before:shadow-[inset_0_0_#000];
+
+  @apply after:bg-white dark:after:bg-gray-50;
+  @apply before:bg-gray-300 dark:before:bg-gray-600;
+  @apply before:checked:bg-lime-500 dark:before:checked:bg-lime-500;
+  @apply checked:after:duration-300 checked:after:translate-x-4;
+
+  @apply disabled:after:bg-opacity-75 disabled:cursor-not-allowed;
+  @apply disabled:checked:before:bg-opacity-40;
+}
+
+/* Dark mode styles */
+.dark .rainbow-mesh {
+  background-color: hsla(220, 15%, 10%, 1);
+}
+
+.dark .candy-mesh {
+  background-color: hsla(
+    220,
+    15%,
+    15%,
+    1
+  ); /* Slightly darker dark background */
+}
+
+.dark .ash-mesh {
+  background-color: #1e1e1e;
+  background-image: linear-gradient(135deg, #1e1e1e 0%, #282828 100%);
+}
+
+.dark .glass {
+  background-color: rgba(0, 0, 0, 0.4);
 }

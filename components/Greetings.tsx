@@ -65,7 +65,11 @@ const Greetings = async () => {
         </GlassPane>
 
         <div className="flex items-center justify-center gap-10">
-          <h1 className="text-3xl text-gray-700/90 font-bold mb-4  mt-7">
+          <h1
+            className="text-3xl text-gray-700/90 font-bold mb-4  mt-7
+           dark:text-white/80 
+          "
+          >
             Hello, {user?.firstName}!
           </h1>
           <SignOut />

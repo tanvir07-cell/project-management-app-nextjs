@@ -23,3 +23,18 @@ export const createTask = async (name: string, projectId: string) => {
 
   return { message, task };
 };
+
+export async function updateTask(id) {
+  const res = await fetch(
+    new URL(`/api/task/${id}`, createURL(`/api/task/${id}`)),
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ completed: true, id }),
+    }
+  );
+  const { message, task } = await res.json();
+  return { message, task };
+}
