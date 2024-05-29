@@ -7,7 +7,6 @@ import clsx from "clsx";
 
 const CompletedRadio = ({ id, label }) => {
   const [completed, setCompleted] = useState(null);
-  const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
   return (
@@ -28,10 +27,8 @@ const CompletedRadio = ({ id, label }) => {
         type="radio"
         checked={completed === id}
         onChange={() => {
-          startTransition(() => {
-            updateTask(id);
-            setCompleted(id);
-          });
+          updateTask(id);
+          setCompleted(id);
           router.refresh();
         }}
         className="ml-2"

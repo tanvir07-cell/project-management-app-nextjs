@@ -21,7 +21,8 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
   });
   revalidatePath(`/project/${projectId}`);
   revalidatePath(`/home`);
-  revalidateTag(`/project/${projectId}`);
+  revalidateTag("tasks");
+  revalidateTag("dashboard:tasks");
 
   return NextResponse.json({
     message: "Task created successfully",

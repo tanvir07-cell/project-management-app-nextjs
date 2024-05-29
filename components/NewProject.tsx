@@ -10,13 +10,12 @@ import { useRouter } from "next/navigation";
 const NewProject = () => {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
-  const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
-  const handleClick = () => {
-    startTransition(() => {
-      createPost(name);
-    });
+  const handleClick = async (e) => {
+    e.preventDefault();
+    await createPost(name);
+
     setShowModal(false);
     router.refresh();
   };
@@ -37,11 +36,7 @@ const NewProject = () => {
                   onChange={(e) => setName(e.target.value)}
                   className="w-[100%]"
                 />
-                <Button
-                  type="submit"
-                  isLoading={isPending}
-                  onClick={handleClick}
-                >
+                <Button type="submit" onClick={handleClick}>
                   Create
                 </Button>
                 <Button

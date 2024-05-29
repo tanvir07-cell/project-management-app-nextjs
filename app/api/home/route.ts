@@ -23,7 +23,8 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
   });
 
   revalidatePath("/home");
-  revalidateTag("/home");
+  revalidateTag("projects");
+  revalidateTag("dashboard:projects");
 
   return NextResponse.json({
     message: "Project created successfully",

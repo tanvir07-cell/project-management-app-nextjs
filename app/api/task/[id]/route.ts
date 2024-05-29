@@ -29,7 +29,8 @@ export const PATCH = async (req: NextRequest, res: NextResponse) => {
 
   revalidatePath(`/project/${id}`);
   revalidatePath(`/home`);
-  revalidateTag(`/project/${id}`);
+  revalidateTag(`project/${id}`);
+  revalidateTag("dashboard:tasks");
 
   return NextResponse.json({
     message: "Task updated successfully",

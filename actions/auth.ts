@@ -33,7 +33,7 @@ export const registerUser = async (prevState: any, formData: FormData) => {
     return { message: "Failed to sign you up" };
   }
 
-  redirect("home");
+  redirect("verification");
 };
 
 export const signInUser = async (prevState: any, formData: FormData) => {

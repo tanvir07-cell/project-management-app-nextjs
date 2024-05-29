@@ -8,15 +8,14 @@ import Input from "./Input";
 import { useRouter } from "next/navigation";
 
 const CreateTaskButton = ({ id }) => {
-  const [isPending, startTransition] = useTransition();
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
   const router = useRouter();
 
-  function handleClick() {
-    startTransition(() => {
-      createTask(name, id);
-    });
+  async function handleClick(e) {
+    e.preventDefault();
+    await createTask(name, id);
+
     setShowModal(false);
     router.refresh();
   }
@@ -46,11 +45,7 @@ const CreateTaskButton = ({ id }) => {
                   className="w-[100%]"
                   onChange={(e) => setName(e.target.value)}
                 />
-                <Button
-                  type="submit"
-                  onClick={handleClick}
-                  isLoading={isPending}
-                >
+                <Button type="submit" onClick={handleClick}>
                   Create
                 </Button>
                 <Button

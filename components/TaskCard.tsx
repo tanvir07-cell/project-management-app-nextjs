@@ -10,33 +10,39 @@ import CreateTaskButton from "./CreateTaskButton";
 import Input from "./Input";
 import CompletedRadio from "./CompletedRadio";
 import { TASK_STATUS } from "@prisma/client";
+import { memoize } from "nextjs-better-unstable-cache";
+import { getUserFromDb } from "@/utils/users";
 let user;
-const getAllDueTaskFromUser = async () => {
-  const getTokenFromCookies = cookies().get(COOKIE_NAME) as {
-    name: string;
-    value: string;
-  };
-  user = await getUserFromToken(getTokenFromCookies);
-  const tasks = await prisma.task.findMany({
-    where: {
-      ownerId: user?.id,
-      NOT: {
-        status: TASK_STATUS.COMPLETED,
-        deleted: false,
+const getAllDueTaskFromUser = memoize(
+  async (id) => {
+    const tasks = await prisma.task.findMany({
+      where: {
+        ownerId: id,
+        NOT: {
+          status: TASK_STATUS.COMPLETED,
+          deleted: false,
+        },
       },
-    },
-    take: 5,
-    orderBy: {
-      due: "asc",
-    },
-  });
-  return tasks;
-};
+      take: 5,
+      orderBy: {
+        due: "asc",
+      },
+    });
+    return tasks;
+  },
+  {
+    persist: true,
+    revalidateTags: () => ["dashboard:tasks"],
+    log: ["datacache", "verbose"],
+    logid: "dashboard:tasks",
+  }
+);
 
 const TaskCard = async ({ title, tasks, id }) => {
+  const user = await getUserFromDb();
   tasks =
     tasks && tasks.filter((task) => task.status !== TASK_STATUS.COMPLETED);
-  const data = tasks || (await getAllDueTaskFromUser());
+  const data = tasks || (await getAllDueTaskFromUser(user.id));
 
   return (
     <Card className="mb-10 ash-mesh ">

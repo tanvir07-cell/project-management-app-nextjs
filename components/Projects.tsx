@@ -4,30 +4,39 @@ import prisma from "@/utils/db";
 import { delay } from "@/utils/delay";
 import { cookies } from "next/headers";
 import ProjectCard from "./ProjectCard";
+import { getUserFromDb } from "@/utils/users";
+import { memoize } from "nextjs-better-unstable-cache";
 
-async function getAllProjectsForUser() {
-  await delay(1000);
-  const userTokenfromCookie = cookies().get(COOKIE_NAME) as {
-    name: string;
-    value: string;
-  };
-  const user = await getUserFromToken(userTokenfromCookie);
-  const projects = await prisma.project.findMany({
-    where: {
-      ownerId: user?.id,
-    },
-    include: {
-      tasks: true,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
-  return projects;
-}
+const getAllProjectsForUser = memoize(
+  async (id) => {
+    await delay(1000);
+
+    const projects = await prisma.project.findMany({
+      where: {
+        ownerId: id,
+      },
+      include: {
+        tasks: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    return projects;
+  },
+  {
+    persist: true,
+    revalidateTags: () => ["dashboard:projects"],
+    suppressWarnings: true,
+    log: ["datacache", "verbose"],
+    logid: "dashboard:projects",
+  }
+);
 
 const Projects = async () => {
-  const projects = await getAllProjectsForUser();
+  const user = await getUserFromDb();
+
+  const projects = await getAllProjectsForUser(user.id);
 
   return projects.map((project) => {
     return <ProjectCard key={project.id} project={project} />;
