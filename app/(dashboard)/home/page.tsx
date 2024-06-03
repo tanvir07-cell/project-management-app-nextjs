@@ -1,16 +1,9 @@
-import GlassPane from "@/components/GlassPane";
 import Greetings from "@/components/Greetings";
 import NewProject from "@/components/NewProject";
-import ProjectCard from "@/components/ProjectCard";
 import Projects from "@/components/Projects";
 import TaskCard from "@/components/TaskCard";
 import GreetingsSkeleton from "@/components/loading";
-import { getUserFromToken } from "@/utils/authTools";
-import { COOKIE_NAME } from "@/utils/constants";
-import prisma from "@/utils/db";
-import { delay } from "@/utils/delay";
-import { cookies } from "next/headers";
-import Link from "next/link";
+
 import { Suspense } from "react";
 
 export default function Page() {

@@ -2,8 +2,9 @@
 import { cookies } from "next/headers";
 import { signUp, signIn } from "@/utils/authTools";
 import { z } from "zod";
-import { redirect } from "next/navigation";
 import { COOKIE_NAME } from "@/utils/constants";
+import { redirect } from "next/navigation";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 const registerSchema = z.object({
   email: z.string().email(),
@@ -33,7 +34,7 @@ export const registerUser = async (prevState: any, formData: FormData) => {
     return { message: "Failed to sign you up" };
   }
 
-  redirect("verification");
+  redirect("home");
 };
 
 export const signInUser = async (prevState: any, formData: FormData) => {

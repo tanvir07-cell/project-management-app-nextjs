@@ -17,9 +17,13 @@ const DarkMode = () => {
   useEffect(() => {
     if (toggle) {
       document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+
       window.localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
+
       window.localStorage.setItem("theme", "light");
     }
   }, [toggle]);

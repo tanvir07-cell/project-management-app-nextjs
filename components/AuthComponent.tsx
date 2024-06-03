@@ -4,7 +4,7 @@ import Link from "next/link";
 import Card from "./Card";
 import Input from "./Input";
 import Button from "./Button";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
 import { registerUser, signInUser } from "@/actions/auth";
 
 const registerContent = {
